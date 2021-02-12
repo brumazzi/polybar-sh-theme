@@ -3,6 +3,7 @@
 kmap=$(cat ~/.config/polybar/modules/keymap-default)
 BTN=0
 [[ "$1" ]] && BTN="$1"
+[[ "$kmap" ]] || kmap=alt_i
 
 if [ "$BTN" -eq 1 ]; then
 	if [ "$kmap" == "agr_i" ]; then
@@ -13,8 +14,6 @@ if [ "$BTN" -eq 1 ]; then
 		kmap=agr_i
 	fi
 fi
-
-[[ "$kmap" ]] || kmap=alt_i
 
 echo $kmap > ~/.config/polybar/modules/keymap-default
 echo -e "\U2328: $kmap"

@@ -22,5 +22,3 @@ if [ "$BTN" -eq 1 ]; then
 		sudo poweroff
 	fi
 fi
-
-echo -e "\U1f6aa"

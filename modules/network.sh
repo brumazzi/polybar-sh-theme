@@ -49,4 +49,3 @@ fi
 [[ $IP ]] || exit 0
 
 echo -e "$ICON: $IP"
-#echo -e "$ICON: $(progress_bar 10 6 "$(text_split "$IP" 16)" $YELLOW 16)"
