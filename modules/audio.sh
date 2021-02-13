@@ -25,9 +25,9 @@ elif [ "$BTN" -eq 5 ]; then
 fi
 
 SYMB=""
-if [ "$VOL" -eq 0 ]; then
+if [ "$VOL" -le 34 ]; then
 	SYMB="\U0001f507"
-elif [ "$VOL" -le 30 ]; then
+elif [ "$VOL" -le 40 ]; then
 	SYMB="\U0001f508"
 elif [ "$VOL" -le 80 ]; then
 	SYMB="\U0001f509"
