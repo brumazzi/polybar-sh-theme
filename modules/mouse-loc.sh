@@ -18,4 +18,4 @@ if [ "${pos[0]}" -ge 0 ] && [ "${pos[1]}" -ge 0 ] &&
 	out_message="-- MENU --"
 fi
 
-printf "%s %${SIZE}.${LIMIT}s"  "$OWL_ICON" $out_message
+printf "%s $GREEN%${SIZE}.${LIMIT}s" "$OWL_ICON" $out_message

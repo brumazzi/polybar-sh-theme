@@ -1,22 +1,18 @@
-export BLUE='#204A87'
-export BLUE_2='#093576'
-export BLUE_GRAY_1='#729FCF'
-export BLUE_GRAY_2='#bbbbff'
-export CYAN='#6DC4D3'
-export GRAY='#BABDB6'
-export GREEN='#239A06'
-export ORANGE='#C83F0C'
-export RED='#EE0505'
-export YELLOW='#EAD02B'
-export YELLOW_LIGHT='#F1E76A'
-export EARTH_OWL="#855343"
-export DARK="#262626"
-export LIGHT="#dbdbdb"
+export BLUE="%%{F#4d8ddb}"
+export GREEN="%%{F#42d6b9}"
+export RED="%%{F#db4d4d}"
+export YELLOW="%%{F#dbc14d}"
+export DARK="%%{F#262626}"
+export LIGHT="%%{F#dbdbdb}"
+export PURPLE="%%{F#ad39cb}"
 
-export PROGRESS_OFF="#2E3436"
-export PROGRESS_MEM_BG="#C4A000"
-export PROGRESS_SWAP_BG="#5C3566"
-export PROGRESS_SWAP_FG="#123456"
-export PROGRESS_CPU_BG="#204A87"
-export PROGRESS_CPU_FG="#123456"
-export PROGRESS_TEXT="#000000"
+export GREEN_S="%{F#42d6b9}"
+export PURPLE_S="%{F#ad39cb}"
+
+export PROGRESS_OFF="%{u#545758}"
+export PROGRESS_MEM="%{u#42d6b9}"
+export PROGRESS_SWAP="%{u#ad39cb}"
+export PROGRESS_BLUE="%{u#4d8ddb}"
+
+export BAR_RED="%%{u#db4d4d}"
+export BAR_GREEN="%%{u#42d6b9}"

@@ -1,6 +1,9 @@
 #!/bin/sh
 
+source ~/.config/polybar/modules/color.sh
+
 OUT=$(xrandr | grep connected | grep -v disconnected | awk -F' ' '{print $1}')
+ICON=$(echo -e "\U1f4bb")
 ifs=' '
 export DISP=($OUT)
 
@@ -9,7 +12,7 @@ if [ "${DISP[1]}" == "" ]; then
 #else
 	xrandr -s 1366x768
 	pactl set-card-profile 0 output:analog-stereo
-	echo -e "\U1f4bb: (None)"
+	printf "$ICON: (None)"
 	exit 0
 fi
 
@@ -29,4 +32,4 @@ fi
 
 #xrandr --output ${DISP[0]} --mode 1366x768 --output ${DISP[1]} --mode 1366x768 --same-as ${DISP[0]}
 
-echo -e "\U1f4bb: ${DISP[1]}"
+printf "$ICON: $BLUE${DISP[1]}"

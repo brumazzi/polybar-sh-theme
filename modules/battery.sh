@@ -37,9 +37,9 @@ function shut_down(){
 
 SYMB=
 if [ "$(acad_on)" == "1" ]; then
-	SYMB="\U1f50c"
+	SYMB=$(echo -e "\U1f50c")
 else
-	SYMB="\U1f50b"
+	SYMB=$(echo -e "\U1f50b")
 fi
 
 COLOR=$GREEN
@@ -53,4 +53,4 @@ elif [ "$PORC" -le 60 ]; then
 	COLOR=$YELLOW
 fi
 
-echo -e "$SYMB: $PORC%"
+printf "$SYMB: $GREEN$PORC%%"

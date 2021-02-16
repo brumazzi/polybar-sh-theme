@@ -1,8 +1,6 @@
 #!/bin/bash
 
-# source ~/.config/polybar/modules/color.sh
-
-HTML_FMT="%s"
+source ~/.config/polybar/modules/color.sh
 
 function text_split {
 	PY_COMM="w=''
@@ -18,32 +16,10 @@ function progress_bar {
 	MAX=$1
 	CUR=$2
 	TEXT=$3
-	COLOR=$4
-	COUNT="$5"
-
-	IFS=' '
-	_text=($TEXT)
+	COUNT=${#TEXT}
 
 	PORC=$(echo "$CUR*$COUNT/$MAX" | bc)
-	printf ""
-
-	I=0
-	# while [ $I -le $COUNT ]; do
-	# 	if [ "${_text[$I]}" == "-" ]; then
-	# 		if [ $I -le $PORC ]; then
-	# 			printf "$HTML_FMT" $COLOR $COLOR '#'
-	# 		else
-	# 			printf "$HTML_FMT" $PROGRESS_OFF $PROGRESS_OFF '#'
-	# 		fi
-	# 	else
-	# 		if [ $I -le $PORC ]; then
-	# 			printf "$HTML_FMT" $COLOR $PROGRESS_TEXT ${_text[$I]}
-	# 		else
-	# 			printf "$HTML_FMT" $PROGRESS_OFF $PROGRESS_TEXT ${_text[$I]}
-	# 		fi
-	# 	fi
-	# 	let I=$I+1
-	# done
-	printf "\n"
+	progress_end=$(printf '{$%s=$%s"%s"}1' $PORC $PORC $PROGRESS_OFF)
+	echo "$TEXT" | awk -vFS="" -vOFS="" $progress_end
 }
 

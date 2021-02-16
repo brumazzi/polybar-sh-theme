@@ -24,17 +24,19 @@ elif [ "$BTN" -eq 5 ]; then
 	fi
 fi
 
-SYMB=""
+ICON=""
 if [ "$VOL" -le 34 ]; then
-	SYMB="\U0001f507"
+	ICON=$(echo -e "\U0001f507")
 elif [ "$VOL" -le 40 ]; then
-	SYMB="\U0001f508"
+	ICON=$(echo -e "\U0001f508")
 elif [ "$VOL" -le 80 ]; then
-	SYMB="\U0001f509"
+	ICON=$(echo -e "\U0001f509")
 elif [ "$VOL" -le 100 ]; then
-	SYMB="\U0001f50a"
+	ICON=$(echo -e "\U0001f50a")
 fi
 
 amixer sset 'Master' "${VOL}%" > /dev/zero
 
-echo -e "$SYMB: ${VOL}%"
+label=$(printf "$ICON: %3.3s%%" "${VOL}")
+label_with_progress=$(progress_bar 100 $VOL "$label")
+echo -n "$PROGRESS_BLUE$label_with_progress" | sed "s/:/:$(printf $BLUE)/"

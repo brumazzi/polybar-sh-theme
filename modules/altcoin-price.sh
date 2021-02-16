@@ -1,6 +1,7 @@
 #!/bin/sh
 
 TMP_FILE=/tmp/alt-coin-changed.tmp
+source ~/.config/polybar/modules/color.sh
 
 if [ "$1" == "" ]; then
 	TMP_STAGE=/tmp/alt-coin-stage.tmp
@@ -8,11 +9,20 @@ if [ "$1" == "" ]; then
 	price=$(cat $TMP_FILE | awk -F\  '{ print $1 }')
 	change=$(cat $TMP_FILE | awk -F\  '{ print $2 }')
 	icon=$(cat $TMP_FILE | awk -F\  '{ print $3 }')
+	coin=$(cat $TMP_FILE | awk -F\  '{ print $4 }')
+	price_grow=$(echo "console.log($change > 0 ? 1 : 0)" | node)
+
+	if [ "$price_grow" -eq "0" ]; then
+		bar="$BAR_RED"
+		show_coin="${coin::-1}"
+		color="$RED"
+	fi
+
 	if [ -f $TMP_STAGE ]; then
 		if [ "$(cat $TMP_STAGE)" -eq "1" ]; then
-			printf "$%s" ${price:1}
+			printf "$BAR_GREEN${coin::-1}: $GREEN$%s" ${price:1}
 		else
-			printf "%s%% %s" $change ${icon::1}
+			printf "$bar$show_coin: $color$color%s%% %s" $change ${icon}
 		fi
 	else
 		printf 1 > $TMP_STAGE
@@ -31,7 +41,6 @@ while [ 1 ]; do
 
 	price=$(echo $DTA | awk -F: '{ print $1 }')
 	changed=$(echo $DTA | awk -F: '{ print $2 }')
-	price_grow=$(echo "console.log($changed > 0 ? 1 : 0)" | node)
 	coin=$(echo $1 | awk -F_ '{ print $2 }')
 
 	if [ "$price_grow" -eq 1 ]; then
@@ -42,6 +51,6 @@ while [ 1 ]; do
 		icon=$(echo -e "\U1f4c9")
 	fi
 
-	printf "|$price $changed $icon|" > /tmp/alt-coin-changed.tmp
+	printf "|$price $changed $icon $coin|" > /tmp/alt-coin-changed.tmp
 	sleep 5
 done

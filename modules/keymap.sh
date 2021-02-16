@@ -1,7 +1,10 @@
 #!/bin/sh
 
+source ~/.config/polybar/modules/color.sh
+
 kmap=$(cat ~/.config/polybar/modules/keymap-default)
 BTN=0
+ICON=$(echo -e "\u2328")
 [[ "$1" ]] && BTN="$1"
 [[ "$kmap" ]] || kmap=alt_i
 
@@ -16,4 +19,4 @@ if [ "$BTN" -eq 1 ]; then
 fi
 
 echo $kmap > ~/.config/polybar/modules/keymap-default
-echo -e "\U2328: $kmap"
+printf "$ICON: $BLUE$kmap"
