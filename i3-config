@@ -250,6 +250,7 @@ exec_always --no-startup-id "sh ~/.config/polybar/polybar.sh &"
 exec_always --no-startup-id "bash ~/.config/polybar/modules/altcoin-price.sh USDT_XRP &"
 exec_always --no-startup-id "jgmenu --hide-on-startup --at-pointer"
 exec numlockx
+exec xset s 3600 3600
 
 for_window [class="^.*"] border normal 0
 
