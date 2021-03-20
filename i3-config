@@ -195,6 +195,12 @@ bindsym XF86AudioPause exec playerctl pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
+# printscreem
+bindsym Print exec gnome-screenshot
+bindsym $ctrl+$alt+Print exec gnome-screenshot -w
+bindsym $ctrl+Print exec gnome-screenshot -a
+bindsym $mod+Print exec gnome-screenshot -i
+
 # reload the configuration file
 bindsym $ctrl+$alt+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
@@ -249,10 +255,16 @@ exec "setxkbmap -layout us -variant alt-intl && echo 'alt_i' > ~/.config/polybar
 exec_always --no-startup-id "sh ~/.config/polybar/polybar.sh &"
 exec_always --no-startup-id "bash ~/.config/polybar/modules/altcoin-price.sh USDT_XRP &"
 exec_always --no-startup-id "jgmenu --hide-on-startup --at-pointer"
+exec_always --no-startup-id "picom -b"
 exec numlockx
 exec xset s 3600 3600
+exec xset s off -dpms
 
+# for_window [window_role="About"] floating enable
 for_window [class="^.*"] border normal 0
+for_window [class="vlc"] floating enable
+for_window [class="app-menu"] border pixel 0
+for_window [class="app-menu"] floating enable
 
 client.focused #00b0ef #00b0ef #141414 #ff7066
 client.focused_inactive #141414 #141414 #00b0ef #472b2a
