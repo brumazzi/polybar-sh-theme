@@ -6,16 +6,25 @@ source ~/.config/polybar/modules/color.sh
 if [ "$1" == "" ]; then
 	TMP_STAGE=/tmp/alt-coin-stage.tmp
 	[[ -f $TMP_FILE ]] || printf "-"
+	
 	price=$(cat $TMP_FILE | awk -F\  '{ print $1 }')
 	change=$(cat $TMP_FILE | awk -F\  '{ print $2 }')
-	icon=$(cat $TMP_FILE | awk -F\  '{ print $3 }')
+	# icon=$(cat $TMP_FILE | awk -F\  '{ print $3 }')
 	coin=$(cat $TMP_FILE | awk -F\  '{ print $4 }')
+	
+	[[ "${price:1}" == "" ]] && printf "No coin data" && exit 0
 	price_grow=$(echo "console.log($change > 0 ? 1 : 0)" | node)
 
 	if [ "$price_grow" -eq "0" ]; then
 		bar="$BAR_RED"
 		show_coin="${coin::-1}"
 		color="$RED"
+		icon=$(echo -e "\U1f4c9")
+	else
+		bar="$BAR_GREEN"
+		show_coin="${coin::-1}"
+		color="$GREEN"
+		icon=$(echo -e "\U1f4c8")
 	fi
 
 	if [ -f $TMP_STAGE ]; then

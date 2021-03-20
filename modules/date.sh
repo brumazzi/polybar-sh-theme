@@ -10,7 +10,7 @@ function update_weather {
 	while [ "$(cat /tmp/WEATHER.tmp)" ]; do
 		WEATHER_INFO="$(curl http://wttr.in/Guariba?format=1)"
 		printf "$WEATHER_INFO" > /tmp/WEATHER_INFO.tmp
-		sleep 300
+		sleep 1300
 	done
 	
 }

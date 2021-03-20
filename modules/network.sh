@@ -5,15 +5,18 @@ source ~/.config/polybar/modules/color.sh
 btn=0
 [[ "$1" ]] && btn=$1
 
-ETH=$(ip addr show eth0 | grep inet | grep -E -o '[0-9.]{7,15}')
-EIP=$(echo $ETH | awk -F' ' '{print $1}')
-EMASK=$(echo $ETH | awk -F' ' '{print $2}')
-EBROADCAT=$(echo $ETH | awk -F' ' '{print $3}')
+#ETH=$(ip addr show enp2s0f0 | grep inet | grep -E -o '[0-9.]{7,15}')
+#EIP=$(echo $ETH | awk -F' ' '{print $1}')
+#EMASK=$(echo $ETH | awk -F' ' '{print $2}')
+#EBROADCAT=$(echo $ETH | awk -F' ' '{print $3}')
 
 WLAN=$(ip addr show wlp3s0 | grep inet | grep -E -o '[0-9.]{7,15}')
 WIP=$(echo $WLAN | awk -F' ' '{print $1}')
 WMASK=$(echo $WLAN | awk -F' ' '{print $2}')
 WBROADCAT=$(echo $WLAN | awk -F' ' '{print $3}')
+
+v=$(ping google.com.br -W 100 -c 1 2> /dev/null)
+[[ "$?" -ne "0" ]] && printf "${YELLOW}No Network" && exit 0
 
 IP=""
 if [ "$EIP" ] && [ "$WIP" ]; then

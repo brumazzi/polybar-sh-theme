@@ -5,7 +5,7 @@ act=""
 [[ "$1" ]] && BTN=$1
 
 if [ "$BTN" -eq 1 ]; then
-	act=$(zenity --list --text="Sair?" --column="Action" Logout Suspend Hibernate Reboot Shutdown)
+	act=$(zenity --list --text="Sair?" --column="Action" Suspend Reboot Shutdown)
 	if [ "$act" ]; then
 		killall conky -9
 #		killall nm-applet

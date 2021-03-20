@@ -25,11 +25,11 @@ elif [ "$BTN" -eq 5 ]; then
 fi
 
 ICON=""
-if [ "$VOL" -le 34 ]; then
+if [ "$VOL" -le 0 ]; then
 	ICON=$(echo -e "\U0001f507")
-elif [ "$VOL" -le 40 ]; then
+elif [ "$VOL" -le 30 ]; then
 	ICON=$(echo -e "\U0001f508")
-elif [ "$VOL" -le 80 ]; then
+elif [ "$VOL" -le 70 ]; then
 	ICON=$(echo -e "\U0001f509")
 elif [ "$VOL" -le 100 ]; then
 	ICON=$(echo -e "\U0001f50a")
