@@ -254,6 +254,7 @@ exec "setxkbmap -layout us -variant alt-intl && echo 'alt_i' > ~/.config/polybar
 #exec "sh ~/.config/i3/startup.sh"
 exec_always --no-startup-id "sh ~/.config/polybar/polybar.sh &"
 exec_always --no-startup-id "bash ~/.config/polybar/modules/altcoin-price.sh USDT_XRP &"
+exec_always --no-startup-id "bash ~/.config/polybar/modules/record.sh &"
 exec_always --no-startup-id "jgmenu --hide-on-startup --at-pointer"
 exec_always --no-startup-id "picom -b"
 exec numlockx
