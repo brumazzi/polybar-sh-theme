@@ -8,7 +8,7 @@ function update_weather {
 	if [ "$(cat /tmp/WEATHER.tmp)" -eq "1" ]; then return 1; fi
 	printf 1 > /tmp/WEATHER.tmp
 	while [ "$(cat /tmp/WEATHER.tmp)" ]; do
-		WEATHER_INFO="$(curl http://wttr.in/Guariba?format=1)"
+		WEATHER_INFO="$(curl http://wttr.in/Palhoca?format=1)"
 		printf "$WEATHER_INFO" > /tmp/WEATHER_INFO.tmp
 		sleep 1300
 	done

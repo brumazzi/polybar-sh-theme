@@ -31,7 +31,7 @@ floating_modifier $mod
 
 # start a terminal
 #bindsym $mod+Return exec i3-sensible-terminal
-bindsym $mod+Return exec "mate-terminal || gnome-terminal"
+bindsym $mod+Return exec "mate-terminal || gnome-terminal || sakura"
 bindsym $mod+Shift+h exec "caja"
 
 # kill focused window
@@ -43,7 +43,7 @@ bindsym $mod+d exec dmenu_run
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
 # bindsym $mod+p exec --no-startup-id i3-dmenu-desktop
-bindsym $mod+p exec j4-dmenu-desktop
+bindsym $mod+p exec i3-dmenu-desktop
 
 #morc_menu run
 bindsym $mod+m exec morc_menu
@@ -196,10 +196,10 @@ bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
 # printscreem
-bindsym Print exec gnome-screenshot
-bindsym $ctrl+$alt+Print exec gnome-screenshot -w
-bindsym $ctrl+Print exec gnome-screenshot -a
-bindsym $mod+Print exec gnome-screenshot -i
+bindsym Print exec mate-screenshot
+# bindsym $mod+$ctrl+$alt+Print exec mate-screenshot -i
+# bindsym $mod+$alt+Print exec mate-screenshot -a
+bindsym $mod+Print exec mate-screenshot -i
 
 # reload the configuration file
 bindsym $ctrl+$alt+c reload
@@ -207,9 +207,9 @@ bindsym $ctrl+$alt+c reload
 bindsym $ctrl+$alt+r restart
 
 # touchpad active buttons
-exec "synclient VertEdgeScroll=1"
-exec "synclient TapButton1=1"
-exec "sh ~/.config/i3/sync_clock.sh"
+# exec "synclient VertEdgeScroll=1"
+# exec "synclient TapButton1=1"
+# exec "sh ~/.config/i3/sync_clock.sh"
 
 # lock screen
 bindsym $ctrl+$alt+l exec "i3lock -i ~/.config/i3/lock.png"
@@ -254,10 +254,12 @@ exec "setxkbmap -layout us -variant alt-intl && echo 'alt_i' > ~/.config/polybar
 #exec "sh ~/.config/i3/startup.sh"
 exec_always --no-startup-id "sh ~/.config/polybar/polybar.sh &"
 exec_always --no-startup-id "bash ~/.config/polybar/modules/altcoin-price.sh USDT_XRP &"
-exec_always --no-startup-id "bash ~/.config/polybar/modules/record.sh &"
-exec_always --no-startup-id "jgmenu --hide-on-startup --at-pointer"
+exec_always --no-startup-id "bash ~/.config/polybar/modules/hook.sh play &"
+exec_always --no-startup-id "sudo python ~/.config/polybar/modules/husk-ctrl.py &"
+# exec_always --no-startup-id "bash ~/.config/polybar/modules/record.sh &"
+# exec_always --no-startup-id "jgmenu --hide-on-startup --at-pointer"
 exec_always --no-startup-id "picom -b"
-exec numlockx
+exec numlockx on
 exec xset s 3600 3600
 exec xset s off -dpms
 
