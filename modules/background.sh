@@ -1,9 +1,14 @@
 #!/bin/bash
 
-_IMD=~/.config/i3/bg/$1
+BG_FOLDER=$(cat ~/.polybg)
+
+[[ "$BG_FOLDER" == "" ]] && BG_FOLDER=$1
+
+_IMD=~/.config/polybar/bg/$BG_FOLDER
 _TMPF=/tmp/i3bg.tmpF
 _TMPM=/tmp/i3bg.tmpM
 _TMP=/tmp/i3bg.tmp
+
 
 [[ -d "$_IMD" ]] || mkdir $_IMD -p
 

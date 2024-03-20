@@ -13,9 +13,9 @@ if [ "$BTN" -eq 1 ]; then
 	if [ "$act" == "Logout" ]; then
 		i3-msg exit
 	elif [ "$act" == "Suspend" ]; then
-		sudo pm-suspend
+		loginctl suspend
 	elif [ "$act" == "Hibernate" ]; then
-		sudo pm-hibernate
+		loginctl hibernate
 	elif [ "$act" == "Reboot" ]; then
 		sudo reboot
 	elif [ "$act" == "Shutdown" ]; then

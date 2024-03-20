@@ -31,8 +31,8 @@ floating_modifier $mod
 
 # start a terminal
 #bindsym $mod+Return exec i3-sensible-terminal
-bindsym $mod+Return exec "mate-terminal || gnome-terminal || sakura"
-bindsym $mod+Shift+h exec "caja"
+bindsym $mod+Return exec "i3-sensible-terminal"
+bindsym $mod+Shift+h exec "thunar"
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -196,10 +196,10 @@ bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
 # printscreem
-bindsym Print exec mate-screenshot
+bindsym Print exec gnome-screenshot
 # bindsym $mod+$ctrl+$alt+Print exec mate-screenshot -i
 # bindsym $mod+$alt+Print exec mate-screenshot -a
-bindsym $mod+Print exec mate-screenshot -i
+bindsym $mod+Print exec gnome-screenshot -i
 
 # reload the configuration file
 bindsym $ctrl+$alt+c reload
@@ -253,9 +253,10 @@ exec "setxkbmap -layout us -variant alt-intl && echo 'alt_i' > ~/.config/polybar
 #exec "feh --bg-scale /usr/share/backgrounds/default.jpg &"
 #exec "sh ~/.config/i3/startup.sh"
 exec_always --no-startup-id "sh ~/.config/polybar/polybar.sh &"
-exec_always --no-startup-id "bash ~/.config/polybar/modules/altcoin-price.sh USDT_XRP &"
 exec_always --no-startup-id "bash ~/.config/polybar/modules/hook.sh play &"
 exec_always --no-startup-id "sudo python ~/.config/polybar/modules/husk-ctrl.py &"
+exec_always --no-startup-id "slack &"
+exec_always --no-startup-id "discord &"
 # exec_always --no-startup-id "bash ~/.config/polybar/modules/record.sh &"
 # exec_always --no-startup-id "jgmenu --hide-on-startup --at-pointer"
 exec_always --no-startup-id "picom -b"

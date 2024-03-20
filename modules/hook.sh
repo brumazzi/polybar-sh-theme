@@ -35,6 +35,9 @@ source ~/.config/polybar/modules/color.sh
 
 STAT="$(cat /var/run/hook.comm)"
 
+#[[ -f /home/brumazzi/Projects/Talentbrand/Gemfile ]] ||
+#	printf "${BAR_ORANGE}${RED} * "
+
 if [ "$1" == "test" ]; then
 	if [ "$STAT" ]; then
 		exit 0
