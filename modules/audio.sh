@@ -7,12 +7,11 @@ source ~/.config/polybar/modules/progress-bar.sh
 VOL=$(amixer get Master | grep -E -o '[%[0-9]{1,3}%]' | head -1 | grep -E -o '[0-9]{1,3}')
 
 if [ "$BTN" -eq 1 ]; then
-	mate-terminal -e 'ls'
-	#(
-	tmp=$(zenity --scale --text="Volume" --min-value=0 --max-value=100 --value=$VOL)
+	$(
+	tmp=$(bash /home/brumazzi/.config/polybar/modules/mixed-dialog.sh)
 	VOL=$tmp
 	unset tmp
-	#) &
+	) &
 elif [ "$BTN" -eq 4 ]; then
 	let VOL=$VOL+4
 	if [ $VOL -ge 100 ]; then

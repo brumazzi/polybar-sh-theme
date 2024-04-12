@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 from requests import request
 import sys, time, os
 
@@ -15,8 +17,6 @@ try:
     coinsList = result.json()
 
     for coin in coinsList:
-        #askPrice = round(float(coin["askPrice"]), 5)
-        #priceChangePercent = round(float(coin["priceChangePercent"]), 2)
         askPrice = coin["askPrice"]
         priceChangePercent = coin["priceChangePercent"]
         symbol = coin["symbol"].replace("USDT", "")
