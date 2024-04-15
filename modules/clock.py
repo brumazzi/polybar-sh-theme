@@ -23,7 +23,7 @@ CLOCK_LIST=[
 CALENDAR="📅"
 
 timeKey = time.strftime("%M%S")
-timeKeyRange = [ f"{index}000" for index in range(0,6) ]
+timeKeyRange = [ f"{index}000" for index in [0, 3] ]
 
 if timeKey in timeKeyRange:
     response = request("GET", URL)
@@ -42,6 +42,6 @@ if os.path.exists(TMP_WEATHER_PATH):
     weather = f.read()
     f.close()
 
-clockIcon = CLOCK_LIST[curHour][0 if curMin < 30 else 1]
+clockIcon = CLOCK_LIST[curHour-1][0 if curMin < 30 else 1]
 
 print(time.strftime(f'{CALENDAR} %a %d %b {clockIcon} %H:%M {weather}'))
