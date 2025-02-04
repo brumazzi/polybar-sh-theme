@@ -33,6 +33,11 @@ if [ "$1" == "MEM" ]; then
 	text_color=$GREEN_S
 	percent_with_progress="$PROGRESS_MEM$(progress_bar $MEM_MAX $MEM_AVAL "$text")"
 elif [ "$1" == "SWAP" ]; then
+	if [ "$SWAP_MAX" -eq 0 ]; then
+		echo ""
+		exit
+	fi
+
 	percent=$(percent_swap)
 	text=$(printf "$SWP_TEXT_L %3.3s%%" $percent)
 	text_color=$PURPLE_S

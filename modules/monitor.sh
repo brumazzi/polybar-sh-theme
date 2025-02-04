@@ -3,7 +3,7 @@
 source ~/.config/polybar/modules/color.sh
 
 OUT=$(xrandr | grep connected | grep -v disconnected | awk -F' ' '{print $1}')
-ICON=$(echo -e "\U1f4bb")
+ICON=$(echo -e "\U1f5a5")
 ifs=' '
 export DISP=($OUT)
 
@@ -32,4 +32,4 @@ fi
 
 #xrandr --output ${DISP[0]} --mode 1366x768 --output ${DISP[1]} --mode 1366x768 --same-as ${DISP[0]}
 
-printf "$ICON: $BLUE${DISP[1]}"
+printf " $ICON: $BLUE${DISP[1]} "

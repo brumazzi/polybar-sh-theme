@@ -15,7 +15,7 @@ while [ "$LOOP" ]; do
 	if [ "$option" == 'audiocard' ]; then
 		card="1"
 		while [ "$card" ]; do
-			card=$(Xdialog --stdout --under-mouse --wmclass $WMCLASS --title "Audio card" --menu "Audio card" 15 50 0 1 "$CARD_01" 2 "$CARD_02" 5 "$CARD_03")
+			card=$(Xdialog --stdout --under-mouse --wmclass $WMCLASS --title "Audio card" --menu "Audio card" 15 50 0 1 "$CARD_01" 0 "$CARD_03")
 			if [ "$card" != "" ]; then
 				let card="$card"
 				pactl set-default-sink $card

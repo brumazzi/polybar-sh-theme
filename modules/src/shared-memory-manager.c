@@ -10,10 +10,11 @@ void print_help(){
 	printf("Shared memory manager\n\n");
 
 	printf("Options:\n");
-	printf("--alloc | -a <SIZE_T>      Alloc shared memory.\n");
-	printf("--free | -f                Free shared memory.\n");
-	printf("--read | -r                Read value in shared memory.\n");
-	printf("--write | -w <VALUE>       Write text value in shared memory.\n\n");
+	printf("--alloc   | -a <SIZE_T>       Alloc shared memory.\n");
+	printf("--free    | -f                Free shared memory.\n");
+	printf("--read    | -r                Read value in shared memory.\n");
+	printf("--write   | -w <VALUE>        Write text value in shared memory.\n");
+	printf("--pointer | -p                Return memory address in number format.\n\n");
 }
 
 int shared_memory_from_file(const char *);
@@ -37,6 +38,8 @@ int main(int argc, char *argv[]){
 			property = 'f';
 		}else if(!strcmp(argv[i], "--read") || !strcmp(argv[i], "-r")){
 			property = 'r';
+		}else if(!strcmp(argv[i], "--pointer") || !strcmp(argv[i], "-p")){
+			property = 'p';
 		}else if(!strcmp(argv[i], "--write") || !strcmp(argv[i], "-w")){
 			i++;
 			property = 'w';
@@ -79,6 +82,12 @@ int main(int argc, char *argv[]){
 			printf("%c", *(character));
 			character+=1;
 		}
+		break;
+	case 'p':
+		shared_memory = shared_memory_from_file(shared_memory_name);
+		if(!shared_memory) return 2;
+		shared_memory_addr = memory_addr(shared_memory);
+		printf("%p", shared_memory_addr);
 		break;
 
 	default:

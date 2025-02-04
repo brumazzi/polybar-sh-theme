@@ -7,11 +7,7 @@ source ~/.config/polybar/modules/progress-bar.sh
 VOL=$(amixer get Master | grep -E -o '[%[0-9]{1,3}%]' | head -1 | grep -E -o '[0-9]{1,3}')
 
 if [ "$BTN" -eq 1 ]; then
-	$(
-	tmp=$(bash /home/brumazzi/.config/polybar/modules/mixed-dialog.sh)
-	VOL=$tmp
-	unset tmp
-	) &
+	/home/brumazzi/.config/polybar/modules/build/mixer &
 elif [ "$BTN" -eq 4 ]; then
 	let VOL=$VOL+4
 	if [ $VOL -ge 100 ]; then

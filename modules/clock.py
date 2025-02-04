@@ -23,15 +23,18 @@ CLOCK_LIST=[
 CALENDAR="📅"
 
 timeKey = time.strftime("%M%S")
-timeKeyRange = [ f"{index}000" for index in [0, 3] ]
+timeKeyRange = [ f"{index}000" for index in [0] ]
 
+"""
 if timeKey in timeKeyRange:
     response = request("GET", URL)
     if response.ok:
         data = response.text[:-1]
-        f = open(TMP_WEATHER_PATH, "w")
-        f.write(data.replace("   "," "))
-        f.close()
+        if not data.startwith("Unknown"):
+            f = open(TMP_WEATHER_PATH, "w")
+            f.write(data.replace("   "," "))
+            f.close()
+"""
 
 curHour = int(time.strftime("%l"))
 curMin = int(time.strftime("%M"))

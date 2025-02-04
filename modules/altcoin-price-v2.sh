@@ -1,7 +1,9 @@
 #!/bin/sh
 
-TMP_FILES=/tmp/alt-coin-changed.tmp-*
+TMP_FILES=/tmp/shm-*
 source ~/.config/polybar/modules/color.sh
+
+[[ -x /usr/bin/node ]] || echo "NodeJS Not Found!" && exit 1
 
 if [ "$1" == "" ]; then
 	TMP_STAGE=/tmp/alt-coin-stage.tmp
@@ -11,9 +13,12 @@ if [ "$1" == "" ]; then
 	for TMP_FILE in $TMP_FILES; do
 		[[ -f $TMP_FILE ]] || printf " FINDING... "
 
-		price=$(cat $TMP_FILE | awk -F\  '{ print $1 }')
-		change=$(cat $TMP_FILE | awk -F\  '{ print $2 }')
-		coin=$(cat $TMP_FILE | awk -F\  '{ print $3 }')
+		coin_alias=${TMP_FILE:9:-4}
+		coin_data=$(shmm $coin_alias -r)
+
+		price=$(echo $coin_data | awk -F\  '{ print $1 }')
+		change=$(echo $coin_data | awk -F\  '{ print $2 }')
+		coin=$(echo $coin_data | awk -F\  '{ print $3 }')
 
 		[[ "${price:1}" == "" ]] && printf " No coin data " && exit 0
 		price_grow=$(echo "console.log($change > 0 ? 1 : 0)" | /usr/bin/node)
