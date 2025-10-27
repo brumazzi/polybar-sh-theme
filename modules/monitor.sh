@@ -2,6 +2,10 @@
 
 source ~/.config/polybar/modules/color.sh
 
+
+echo " {$RED}DON'T WORKING "
+exit 0 
+
 OUT=$(xrandr | grep connected | grep -v disconnected | awk -F' ' '{print $1}')
 ICON=$(echo -e "\U1f5a5")
 ifs=' '
