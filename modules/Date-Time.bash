@@ -1,6 +1,7 @@
 #!/bin/bash
 
 source ~/.config/polybar/modules/color.sh
+source ~/.config/polybar/modules/Weather-Icons.bash
 
 CLOCK_ICON="🕛🕧:🕐🕜:🕑🕝:🕒🕞:🕓🕟:🕔🕠:🕕🕡:🕖🕢:🕗🕣:🕘🕤:🕙🕥:🕚🕦"
 CALENDAR_ICON=""
@@ -27,9 +28,8 @@ fi
 
 # Add weather if exists
 weather="$(shmm WTTR -r)"
-source ~/.config/polybar/modules/Weather-Icons.bash
 
-if [ "$(echo $weather | wc -c)" -gt 15 ]; then
+if [ "$(echo ${#weather})" -gt 15 ]; then
 	temperature="$(echo $weather | awk -F: '{print $2}')"
 	humidity="$(echo $weather | awk -F: '{print $3}')"
 	weather_code="$(echo $weather | awk -F: '{print $4}')"

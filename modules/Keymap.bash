@@ -12,7 +12,7 @@ IBUS="$(pgrep ibus-daemon)"
 
 if [ "$kmap" == "" ]; then
 	shmm kmap --alloc 32
-	kmap="alt_i"
+	kmap="xkb:us:alt-intl:eng"
 	
 	if [ "$IBUS" ]; then
 		ibus engine xkb:us:alt-intl:eng
@@ -20,17 +20,17 @@ if [ "$kmap" == "" ]; then
 	else
 		setxkbmap -layout us -variant alt-intl
 	fi
-	shmm kmap -w alt_i
+	shmm kmap -w xkb:us:alt-intl:eng
 fi
 
 if [ ! "$IBUS" ]; then
 	if [ "$BTN" -eq 1 ]; then
-		if [ "$kmap" == "agr_i" ]; then
+		if [ "$kmap" == "xkb:us:altgr-intl:eng" ]; then
 			setxkbmap -layout us -variant alt-intl
-			kmap=alt_i
-		elif [ "$kmap" == "alt_i" ]; then
+			kmap=xkb:us:alt-intl:eng
+		elif [ "$kmap" == "xkb:us:alt-intl:eng" ]; then
 			setxkbmap -layout us -variant altgr-intl
-			kmap=agr_i
+			kmap=xkb:us:altgr-intl:eng
 		fi
 		shmm kmap -w $kmap
 	fi
@@ -51,9 +51,9 @@ else
 	kmap="$(ibus engine)"
 fi
 
-if [ "$kmap" == "xkb:us:altgr-intl:eng" ] || [ "$kmap" == "agr_i" ] ; then
+if [ "$kmap" == "xkb:us:altgr-intl:eng" ]; then
 	kmap="US-Agr"
-elif [ "$kmap" == "xkb:us:alt-intl:eng" ] || [ "$kmap" == "alt_i" ] ; then
+elif [ "$kmap" == "xkb:us:alt-intl:eng" ]; then
 	kmap="US-Int"
 elif [ "$kmap" == "mozc-jp" ]; then
 	kmap="JP-"

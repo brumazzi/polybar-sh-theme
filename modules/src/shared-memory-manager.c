@@ -65,7 +65,6 @@ int main(int argc, char *argv[]){
 		if(!shared_memory) return 2;
 		memory_free(shared_memory);
 		int r = remove(shared_memory_name);
-		printf("%d", r);
 		break;
 	case 'w':
 		shared_memory = shared_memory_from_file(shared_memory_name);
