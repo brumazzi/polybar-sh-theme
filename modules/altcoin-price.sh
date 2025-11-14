@@ -3,10 +3,12 @@
 TMP_FILES=/tmp/alt-coin-changed.tmp-*
 source ~/.config/polybar/modules/color.sh
 
+DIVISOR="$GRAY|$NO_F_COLOR"
+
 if [ "$1" == "" ]; then
 	TMP_STAGE=/tmp/alt-coin-stage.tmp
-	data_price="$GRAY |$NO_F_COLOR"
-	data_percent="$GRAY |$NO_F_COLOR"
+	data_price=""
+	data_percent=""
 
 	for TMP_FILE in $TMP_FILES; do
 		[[ -f $TMP_FILE ]] || printf " FINDING... "
@@ -20,18 +22,16 @@ if [ "$1" == "" ]; then
 
 		if [ "$price_grow" -eq "0" ]; then
 			bar="$BAR_RED"
-			show_coin="${coin}"
 			color="$RED"
 			icon=$(echo -e "\U1f4c9")
 		else
 			bar="$BAR_GREEN"
-			show_coin="${coin}"
 			color="$GREEN"
 			icon=$(echo -e "\U1f4c8")
 		fi
 
-		data_price="$BAR_GREEN$NO_F_COLOR$data_price ${coin}: $color\$${price} $GRAY|$NO_F_COLOR"
-		data_percent="$bar$NO_F_COLOR$data_percent $show_coin: $color$change%% $icon $GRAY|$NO_F_COLOR"
+		data_price="$data_price${bar} ${NO_F_COLOR}${coin}: $color\$${price} $BAR_DARK   "
+		data_percent="$data_percent${bar} ${NO_F_COLOR}${coin}: $color${change}%% $BAR_DARK   "
 	done
 
 	if [ -f $TMP_STAGE ]; then

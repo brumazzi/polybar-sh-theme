@@ -2,13 +2,12 @@
 
 source ~/.config/polybar/modules/functions.sh
 source ~/.config/polybar/modules/color.sh
-source ~/.config/polybar/modules/progress-bar.sh
 
 if [ "$(shmm AC_ACTIVE -r)" != "" ]; then
 	if [ "$(shmm AC_ACTIVE -r)" == "1" ]; then
-		printf "$BAR_GREEN$GRAY  AutoClick:$GREEN ON "
+		printf ":$GREEN AutoClick <F8>"
 	else
-		printf "$BAR_RED$GRAY  AutoClick:$RED OFF"
+		printf ":$RED AutoClick <F8>"
 	fi
 else
 	printf "$NO_BAR"

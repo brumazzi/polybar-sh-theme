@@ -10,10 +10,10 @@ if [ "$PID" ]; then
 	if [ "$1" -eq 1 ]; then
 		kill -9 $PID
 	fi
-	printf "$ICON:$GREEN MIDI \n"
+	printf "$ICON:$GREEN MIDI\n"
 else
 	if [ "$1" -eq 1 ]; then
 		timidity -iA &
 	fi
-	printf "$ICON:$RED MIDI \n"
+	printf "$ICON:$RED MIDI\n"
 fi
