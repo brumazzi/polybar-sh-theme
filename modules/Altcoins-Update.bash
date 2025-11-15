@@ -17,6 +17,7 @@ function update-coins {
 	# seed can add more rules adding ';' and new rule
 
 	local json="$(curl -s https://api.binance.com/api/v3/ticker/24hr?symbols=\%5B$coins_list\%5D)"
+	[[ $? -ne 0 ]] && exit 1
 
 	local coins_data=""
 	for ((i=0;i<$coins_count;i++)); do
@@ -44,3 +45,5 @@ else
 		update-coins
 	fi
 fi
+
+echo ""

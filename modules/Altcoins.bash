@@ -7,7 +7,7 @@ function coins_data {
 	shmm CoinPrice -r
 }
 
-if [ "$(coins_data | wc -c)" -le 16 ]; then
+if [ "$(coins_data | wc -c)" -le 30 ]; then
 	printf "$RED$BAR_RED NOT SYNCRONIZED "
 	exit 0
 fi
@@ -31,9 +31,9 @@ if [ "$1" == "" ]; then
 		# symbol=$(coins-icon $symbol)
 
 		[[ "$mode" -eq 0 ]] &&
-			mode_data="\$$price" ||
+			mode_data="%%{T4}\$%%{T-}${price::10}" ||
 			mode_data="$percent%%"
-
+		
 		bar_color=""
 		text_color=""
 

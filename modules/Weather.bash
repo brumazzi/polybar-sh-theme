@@ -13,20 +13,23 @@ current_time="$(date '+%Y%m%d%H%M')"
 data="$(shmm WTTR -r)"
 if [ "$data" == "" ]; then
 	shmm WTTR -a 128
-	shmm WTTR -w "-"
+	shmm WTTR -w '-'
 else
-	last_update="$(shmm WTTR -r | awk -F: '{print $1}')"
-	let pass_time="$current_time - $last_update"
-	if [ "$pass_time" -lt "$UPDATE_DELAY" ]; then
-		echo " "
-		exit 0
+	if [ "${#data}" -gt 16 ]; then
+		last_update="$(shmm WTTR -r | awk -F: '{print $1}')"
+		let pass_time="$current_time - $last_update"
+		
+		if [ "$pass_time" -lt "$UPDATE_DELAY" ]; then
+			echo ""
+			exit 0
+		fi
 	fi
 fi
 
 json="$(curl -s https://wttr.in/Palho%C3%A7a?format=j1)"
-[[ "$(echo ${#json})" -le 5000 ]] && echo "" exit 0
+[[ $? -ne 0 ]] && echo "" && return 0
 
 wttr_data="$(echo $json | python $JSON_READER_PATH current_condition.0.temp_C current_condition.0.humidity current_condition.0.weatherCode current_condition.0.visibility)"
-
 shmm WTTR -w "${current_time}:${wttr_data}"
-echo " "
+
+echo ""
