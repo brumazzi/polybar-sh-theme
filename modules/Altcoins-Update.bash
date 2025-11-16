@@ -17,7 +17,6 @@ function update-coins {
 	# seed can add more rules adding ';' and new rule
 
 	local json="$(curl -s https://api.binance.com/api/v3/ticker/24hr?symbols=\%5B$coins_list\%5D)"
-	[[ $? -ne 0 ]] && exit 1
 
 	local coins_data=""
 	for ((i=0;i<$coins_count;i++)); do
@@ -28,6 +27,7 @@ function update-coins {
 	done
 
 	shmm CoinPrice -w "$current_time:$coins_count:$coins_data"
+	[[ "$(shmm CoinPrice -r | wc -c)" -le 25 ]] && shmm CoinPrice -w ''
 }
 
 [[ ! -f "$JSON_READER_PATH" ]] && echo $JSON_READER_PATH not exists && exit 1
