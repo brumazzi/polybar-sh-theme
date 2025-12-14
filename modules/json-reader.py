@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import json
 import sys
 
@@ -20,7 +22,8 @@ for arg in args:
             continue
         elif not key in data_json: break
         data_json = data_json[key]
+    
     data.append(data_json)
 
-data = ":".join(data)
+data = ":".join(map(str, data))
 print(data)

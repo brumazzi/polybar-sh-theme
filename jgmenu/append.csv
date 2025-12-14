@@ -1,0 +1,23 @@
+^sep()
+Lock,i3lock -c 000000,system-lock-screen
+
+
+# Adiciona um item no menu raiz que abre um submenu novo
+# Meu Submenu Extra,^checkout(extra),preferences-system-windows-effect-desktopgrid
+
+# Definição do submenu novo (usando ^tag)
+# ^tag(extra)
+# Desktop 1,i3-msg workspace 1,user-desktop
+# Desktop 2,i3-msg workspace 2,user-desktop
+# Desktop 3,i3-msg workspace 3,user-desktop
+# Desktop 4,i3-msg workspace 4,user-desktop
+# Desktop 5,i3-msg workspace 5,user-desktop
+# Desktop 6,i3-msg workspace 6,user-desktop
+# Desktop 7,i3-msg workspace 7,user-desktop
+# Desktop 8,i3-msg workspace 8,user-desktop
+# Desktop 9,i3-msg workspace 9,user-desktop
+# Desktop 10,i3-msg workspace 10,user-desktop
+
+# Ou estenda um submenu existente (ex: adiciona mais itens no 'apps')
+^tag(apps)
+Novo App no Apps,firefox --new-window

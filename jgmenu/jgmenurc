@@ -1,0 +1,35 @@
+stay_alive           = 1
+tint2_look           = 0
+position_mode        = fixed
+terminal_exec        = mate-terminal
+terminal_args        = -e
+menu_width           = 260
+menu_padding_top     = 0
+menu_padding_right   = 0
+menu_padding_bottom  = 0
+menu_padding_left    = 0
+menu_radius          = 0
+menu_border          = 0
+menu_halign          = left
+menu_valign          = top
+menu_margin_y        = 30
+sub_hover_action     = 1
+item_margin_y        = 5
+item_height          = 0
+item_padding_x       = 8
+item_radius          = 0
+item_border          = 0
+sep_height           = 5
+font                 = Roboto bold 13px
+icon_size            = 24
+color_menu_bg        = #222222 100
+color_norm_bg        = #2b303b 0
+color_norm_fg        = #dbdbdb 100
+color_sel_bg         = #444444 60
+color_sel_fg         = #dbdbdb 100
+color_sep_fg         = #8fa1b3 40
+
+icon_size = 26
+icon_theme = breeze-dark
+columns = 1
+

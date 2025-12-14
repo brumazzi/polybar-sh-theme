@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source ~/.config/polybar/modules/color.sh
+source ~/.config/polybar/modules/Color.bash
 
 PID=$(ps -C timidity -o pid=)
 

@@ -1,26 +1,24 @@
 #!/bin/sh
 
-source ~/.config/polybar/modules/color.sh
+source ~/.config/polybar/modules/Color.bash
 
-ICON=$(echo -e "\u2328")
-kmap=$(shmm kmap -r)
+ICON=$(echo -e "\Uf11c")
+kmap=$(shmm i3-kmap -r)
 BTN=0
 [[ "$1" ]] && BTN="$1"
 
 IBUS="$(pgrep ibus-daemon)"
 
-
 if [ "$kmap" == "" ]; then
-	shmm kmap --alloc 32
 	kmap="xkb:us:alt-intl:eng"
-	
+
 	if [ "$IBUS" ]; then
 		ibus engine xkb:us:alt-intl:eng
 		kmap=$(ibus engine)
 	else
 		setxkbmap -layout us -variant alt-intl
 	fi
-	shmm kmap -w xkb:us:alt-intl:eng
+	shmm i3-kmap -w xkb:us:alt-intl:eng
 fi
 
 if [ ! "$IBUS" ]; then
@@ -32,11 +30,11 @@ if [ ! "$IBUS" ]; then
 			setxkbmap -layout us -variant altgr-intl
 			kmap=xkb:us:altgr-intl:eng
 		fi
-		shmm kmap -w $kmap
+		shmm i3-kmap -w $kmap
 	fi
 else
 	kmap="$(ibus engine)"
-	shmm kmap -w $kmap
+	shmm i3-kmap -w $kmap
 	if [ "$BTN" -eq 2 ]; then
 		if [ "$kmap" == "xkb:us:altgr-intl:eng" ]; then
 			ibus engine mozc-jp

@@ -1,0 +1,4 @@
+Terminal,mate-terminal,utilities-terminal
+Browser,firefox,firefox
+File manager,caja,system-file-manager
+^sep()

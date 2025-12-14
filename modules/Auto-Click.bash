@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source ~/.config/polybar/modules/color.sh
+source ~/.config/polybar/modules/Color.bash
 
 if [ "$(shmm AC_ACTIVE -r)" != "" ]; then
 	if [ "$(shmm AC_ACTIVE -r)" == "1" ]; then

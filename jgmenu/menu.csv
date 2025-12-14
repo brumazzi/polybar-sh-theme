@@ -1,0 +1,15 @@
+# Menu principal
+Aplicativos,^checkout(apps),/caminho/para/icone-apps.png
+Configurações,^checkout(config),/caminho/para/icone-config.png
+Sair,exit, /caminho/para/icone-sair.png
+
+# Submenu de Aplicativos (escondido no topo)
+^tag(apps)
+Firefox,firefox
+Terminal,kitty
+Editor,vim
+
+# Submenu de Configurações
+^tag(config)
+Editar i3 config,kitty -e vim ~/.config/i3/config
+Reiniciar i3,i3-msg restart

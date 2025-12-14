@@ -3,47 +3,50 @@
 ICON_TEMPERATURE=""
 ICON_HUMIDITY=""
 ICON_VISIBILITY=""
+ICON_WIND=""
 
 weather-icon() {
-    local code="$1"
-    case $code in
-        # Céu limpo/Sol
-        113) echo "" ;;
+	local code=$1
+	local is_day=$2
+	[[ "$is_day" == "" ]] && is_day=1
 
-        # Parcialmente nublado
-        116) echo "" ;;
-
-        # Nublado/Encoberto
-        119|122) echo "" ;;
-
-        # Névoa/Névoa gelada
-        143|185|248|260) echo "" ;;
-
-        # Chuva leve a moderada (garoa, chuvisco, chuva fraca)
-        176|263|266|293|296|299|302|353) echo "" ;;
-
-        # Chuva intensa/pesada
-        305|308|356|359) echo "" ;;
-
-        # Neve leve a moderada
-        179|323|326|329|332|335|338|368|371) echo "" ;;
-
-        # Neve com vento/Blizzard
-        227|230) echo "🌨️" ;;
-
-        # Chuva/neve misturada (sleet)
-        182|317|320|362|365) echo "🌨️" ;;
-
-        # Chuva/neve congelante
-        281|284|311|314) echo "🧊" ;;
-
-        # Granizo/Pelotas de gelo
-        350|374|377) echo "🧊" ;;
-
-        # Trovoadas (com chuva ou neve)
-        200|386|389|392|395) echo "" ;;
-
-        # Padrão para códigos desconhecidos
-        *) echo "" ;;
-    esac
+	case $code in
+	1000) 
+		if [ $is_day -eq 1 ]; then
+			echo ""
+		else
+			echo ""
+		fi
+		;;
+	1003) 
+		if [ $is_day -eq 1 ]; then
+			echo ""
+		else
+			echo ""
+		fi
+		;;
+	1006|1009) echo "" ;;
+	1030|1135|1147) echo "" ;;
+	1063|1150|1153|1180|1183|1186|1189|1192|1195|1240|1243|1246) 
+		if [ $is_day -eq 1 ]; then
+			echo ""
+		else
+			echo ""
+		fi
+		;;
+	1066|1210|1213|1216|1219|1222|1225|1255|1258) 
+		echo ""
+		;;
+	1069|1204|1207|1249|1252) echo "" ;;
+	1072|1168|1171|1198|1201) echo "" ;;
+	1087|1273|1276) 
+		echo ""
+		;;
+	1114|1117) echo "" ;;
+	1237|1261|1264) echo "🧊" ;;
+	1279|1282) 
+		echo ""
+		;;
+	*) echo "🌍" ;;
+esac
 }

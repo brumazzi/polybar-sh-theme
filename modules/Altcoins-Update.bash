@@ -18,32 +18,32 @@ function update-coins {
 
 	local json="$(curl -s https://api.binance.com/api/v3/ticker/24hr?symbols=\%5B$coins_list\%5D)"
 
-	local coins_data=""
-	for ((i=0;i<$coins_count;i++)); do
-		local coin_data="$(echo $json | python $JSON_READER_PATH $i.symbol $i.askPrice $i.priceChangePercent)"
-		coin_data="${coin_data//:/,}"
-		coin_data="${coin_data//USDT/}"
-		coins_data="${coins_data}$coin_data:"
-	done
+	if [ "$json" ]; then
+		local coins_data=""
+		for ((i=0;i<$coins_count;i++)); do
+			local coin_data="$(echo $json | python $JSON_READER_PATH $i.symbol $i.askPrice $i.priceChangePercent)"
+			coin_data="${coin_data//:/,}"
+			coin_data="${coin_data//USDT/}"
+			coins_data="${coins_data}$coin_data:"
+		done
 
-	shmm CoinPrice -w "$current_time:$coins_count:$coins_data"
-	[[ "$(shmm CoinPrice -r | wc -c)" -le 25 ]] && shmm CoinPrice -w ''
+		shmm i3-CoinPrice -w "$current_time:$coins_count:$coins_data"
+	fi
 }
 
 [[ ! -f "$JSON_READER_PATH" ]] && echo $JSON_READER_PATH not exists && exit 1
 
-data="$(shmm CoinPrice -r)"
-if [ "$data" == "" ]; then
-	shmm CoinPrice -a 2048
-	shmm CoinMode -a 4
-	shmm CoinMode -w 0
-	update-coins
-else
+if [ "$(shmm i3-CoinPrice -p)" ]; then
+	data="$(shmm i3-CoinPrice -r)"
+	[[ "$data" ]] || data=0
+
 	last_update="${data::12}"
 	let pass_time="$current_time - $last_update"
 	if [ "$pass_time" -gt "$UPDATE_DELAY" ]; then
 		update-coins
 	fi
+else
+	update-coins
 fi
 
 echo ""

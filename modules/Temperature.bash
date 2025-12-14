@@ -1,6 +1,6 @@
 #!/bin/sh
 
-source ~/.config/polybar/modules/color.sh
+source ~/.config/polybar/modules/Color.bash
 
 TEMP=$(sensors | grep Tctl | grep -E -o "[0-9]{1,3}.[0-9]{1}" | head -1)
 ICON=""

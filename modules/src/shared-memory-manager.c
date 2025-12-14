@@ -3,6 +3,8 @@
 #include <sys/shm.h>
 #include <termios.h>
 #include <string.h>
+#include <unistd.h>
+#include <dirent.h>
 
 void print_help(){
 	printf("\nUsage: shm MEMORY_REF <OPTIONS <VALUE>> \n\n");
@@ -11,10 +13,12 @@ void print_help(){
 
 	printf("Options:\n");
 	printf("--alloc   | -a <SIZE_T>       Alloc shared memory.\n");
+	printf("--exists  | -e                Return 1 if memory is allocated and 0 if not.\n");
 	printf("--free    | -f                Free shared memory.\n");
 	printf("--read    | -r                Read value in shared memory.\n");
 	printf("--write   | -w <VALUE>        Write text value in shared memory.\n");
-	printf("--pointer | -p                Return memory address in number format.\n\n");
+	printf("--pointer | -p                Return memory address in number format.\n");
+	printf("--list    | -l                List alloced memories.\n\n");
 }
 
 int shared_memory_from_file(const char *);
@@ -34,12 +38,16 @@ int main(int argc, char *argv[]){
 			i++;
 			property = 'a';
 			sscanf(argv[i], "%d", &shared_memory_size);
+		}else if(!strcmp(argv[i], "--exists") || !strcmp(argv[i], "-e")){
+			property = 'e';
 		}else if(!strcmp(argv[i], "--free") || !strcmp(argv[i], "-f")){
 			property = 'f';
 		}else if(!strcmp(argv[i], "--read") || !strcmp(argv[i], "-r")){
 			property = 'r';
 		}else if(!strcmp(argv[i], "--pointer") || !strcmp(argv[i], "-p")){
 			property = 'p';
+		}else if(!strcmp(argv[i], "--list") || !strcmp(argv[i], "-l")){
+			property = 'l';
 		}else if(!strcmp(argv[i], "--write") || !strcmp(argv[i], "-w")){
 			i++;
 			property = 'w';
@@ -88,7 +96,30 @@ int main(int argc, char *argv[]){
 		shared_memory_addr = memory_addr(shared_memory);
 		printf("%p", shared_memory_addr);
 		break;
+	case 'e':
+		if(access(shared_memory_name, F_OK) == 0){
+			printf("1");
+		}else{
+			printf("0");
+		}
 
+		break;
+	case 'l':
+		DIR *dir;
+		struct dirent *entity;
+		dir = opendir("/tmp");
+
+		while((entity = readdir(dir)) != NULL){
+			char* name = entity->d_name;
+			if(!strncmp("shm-", name, 4) && !strncmp(".shm", name + strlen(name) - 4, 4)){
+				name[strlen(name)-4] = '\0';
+				printf("%s\n",name+4);
+			}
+		}
+
+		closedir(dir);
+		
+		break;
 	default:
 		print_help();
 		return 1;

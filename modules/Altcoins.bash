@@ -1,10 +1,10 @@
 #!/bin/sh
 
-source ~/.config/polybar/modules/color.sh
+source ~/.config/polybar/modules/Color.bash
 source ~/.config/polybar/modules/Altcoins-Icons.bash
 
 function coins_data {
-	shmm CoinPrice -r
+	shmm i3-CoinPrice -r
 }
 
 if [ "$(coins_data | wc -c)" -le 30 ]; then
@@ -12,7 +12,7 @@ if [ "$(coins_data | wc -c)" -le 30 ]; then
 	exit 0
 fi
 
-mode="$(shmm CoinMode -r)"
+mode="$(shmm i3-CoinMode -r)"
 
 if [ "$1" == "" ]; then
 	coins_count=$(coins_data | awk -F: '{print $2}')
@@ -28,12 +28,12 @@ if [ "$1" == "" ]; then
 
 		mode_data=""
 		# change symbol by icon don't work in current fontaewsome version (6.5.1)
-		# symbol=$(coins-icon $symbol)
+		symbol=$(coins-icon $symbol)
 
 		[[ "$mode" -eq 0 ]] &&
 			mode_data="%%{T4}\$%%{T-}${price::10}" ||
 			mode_data="$percent%%"
-		
+
 		bar_color=""
 		text_color=""
 
@@ -45,7 +45,7 @@ if [ "$1" == "" ]; then
 			text_color="$GREEN"
 		fi
 
-		coin_show_data=" $bar_color $symbol: $text_color$mode_data $NO_F_COLOR$BAR_DARK "
+		coin_show_data=" $bar_color %%{T6}$symbol%%{T-}: $text_color$mode_data  $NO_F_COLOR$BAR_DARK "
 
 		coins_print="${coins_print}${coin_show_data}"
 	done
@@ -53,6 +53,6 @@ if [ "$1" == "" ]; then
 	printf "$coins_print"
 elif [ "$1" == "1" ]; then
 	[[ "$mode" -eq 1 ]] &&
-		shmm CoinMode -w 0 ||
-		shmm CoinMode -w 1
+		shmm i3-CoinMode -w 0 ||
+		shmm i3-CoinMode -w 1
 fi
