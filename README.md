@@ -9,6 +9,7 @@ Polybar configuration for i3wm with custom modules and icons!
 * jsoncpp
 * FLTK
 * curl
+* ibus
 * jq
 * xdotool
 * jg_menu
