@@ -1,5 +1,7 @@
 # Polybar Configuration
 
+Polybar configuration for i3wm with custom modules and icons!
+
 ## Dependences
 
 * gcc >= 14.3 std c21|c++21
