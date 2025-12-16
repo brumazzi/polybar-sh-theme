@@ -1,3 +1,6 @@
 [submodule "web3icons"]
 	path = web3icons
 	url = https://github.com/0xa3k5/web3icons/
+[submodule "jgmenu"]
+	path = jgmenu
+	url = https://github.com/jgmenu/jgmenu
