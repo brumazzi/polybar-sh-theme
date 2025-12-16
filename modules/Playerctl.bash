@@ -47,8 +47,9 @@ if [ "$1" ]; then
     esac
 else
     status=$(playerctl status --no-messages)
-    position="$(shmm i3-PlayerCtlRange -r | awk -F: '{ print $1 }' )"
-    limit="$(shmm i3-PlayerCtlRange -r | awk -F: '{ print $2 }' )"
+    IFS=':' read -a ctl_range <<< $(shmm i3-PlayerCtlRange -r)
+    position=${ctl_range[0]}
+    limit=${ctl_range[1]}
 
     if [ "$status" ]; then
         music="$(playerctl metadata --format '{{ artist }} - {{ title }}' 2>/dev/null)"

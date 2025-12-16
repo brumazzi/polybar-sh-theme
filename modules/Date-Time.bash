@@ -3,7 +3,7 @@
 source ~/.config/polybar/modules/Color.bash
 source ~/.config/polybar/modules/Weather-Icons.bash
 
-CLOCK_ICON="🕛🕧:🕐🕜:🕑🕝:🕒🕞:🕓🕟:🕔🕠:🕕🕡:🕖🕢:🕗🕣:🕘🕤:🕙🕥:🕚🕦"
+CLOCK_ICON=(🕛🕧 🕐🕜 🕑🕝 🕒🕞 🕓🕟 🕔🕠 🕕🕡 🕖🕢 🕗🕣 🕘🕤 🕙🕥 🕚🕦)
 CALENDAR_ICON=""
 WEEK_DAY="$(date '+%a')"
 DATE="$(date '+%d %b')"
@@ -17,8 +17,7 @@ current_minute="${current_minute#0}"
 minute_ge_30="0"
 [[ "$current_minute" -ge 30 ]] && minute_ge_30="1"
 
-let icon_index="$current_hour + 1"
-current_clock="$(echo $CLOCK_ICON | awk -F: "{print \$$icon_index}")"
+current_clock=${CLOCK_ICON[$current_hour]}
 current_clock="${current_clock:$minute_ge_30:1}"
 
 # Set week day color blue or red
@@ -27,18 +26,18 @@ if [ "$(date +%u)" -ge 6 ]; then
 fi
 
 # Add weather if exists
-weather="$(shmm i3-Weather -r)"
+IFS=':' read -a weather <<< $(shmm i3-Weather -r)
 
 if [ "$weather" ]; then
-	temperature="$(echo $weather | awk -F: '{print $2}')"
-	is_day="$(echo $weather | awk -F: '{print $3}')"
-	icon="$(echo $weather | awk -F: '{print $4}')"
-	weather_code="$(echo $weather | awk -F: '{print $5}')"
-	wind_kph="$(echo $weather | awk -F: '{print $6}')"
-	wind_dir="$(echo $weather | awk -F: '{print $7}')"
-	humidity="$(echo $weather | awk -F: '{print $8}')"
-	cloud="$(echo $weather | awk -F: '{print $9}')"
-	uv="$(echo $weather | awk -F: '{print $10}')"
+	temperature="${weather[1]}"
+	is_day="${weather[2]}"
+	icon="${weather[3]}"
+	weather_code="${weather[4]}"
+	wind_kph="${weather[5]}"
+	wind_dir="${weather[6]}"
+	humidity="${weather[7]}"
+	cloud="${weather[8]}"
+	uv="${weather[9]}"
 
 	weather="  $(weather-icon $weather_code)  ${ICON_TEMPERATURE}${temperature}°"
 fi
