@@ -1,0 +1,60 @@
+#!/bin/bash
+
+function shmm() {
+	~/.local/sbin/shmm $@
+}
+
+AutoClickRun () {
+	while [ "$(shmm AC_ACTIVE -r)" != "" ]; do
+		sleep 0.5
+		while [ "$(shmm AC_ACTIVE -r)" == "1" ]; do
+			xdotool click --delay "$(shmm AC_DELAY -r)" 1
+		done
+	done
+}
+
+AutoClickInit () {
+	shmm AC_DELAY -a 8
+	shmm AC_DELAY -w 10
+	shmm AC_ACTIVE -a 1
+	shmm AC_ACTIVE -w 0
+
+	AutoClickRun &
+}
+
+AutoClickStop () {
+	shmm AC_ACTIVE -w 0
+	sleep 0.1
+	shmm AC_ACTIVE -f
+	shmm AC_DELAY -f
+}
+
+AutoClickToggle () {
+	if [ "$(shmm AC_ACTIVE -r)" == "0" ]; then
+		shmm AC_ACTIVE -w 1
+		printf ON
+	elif [ "$(shmm AC_ACTIVE -r)" == "1" ]; then
+		shmm AC_ACTIVE -w 0
+		printf OFF
+	fi
+}
+
+if [ "$1" != "" ]; then
+	if [ "$1" == "-r" ]; then
+		AutoClickInit
+		echo "Auto Click has started!"
+	elif [ "$1" == "-s" ]; then
+		AutoClickStop
+		echo "Auto Click has stoped!"
+	elif [ "$1" == "-t" ]; then
+		if [ "$(shmm AC_ACTIVE -r)" == "" ]; then
+			$0 -r
+		else
+			$0 -s
+		fi
+	else
+		echo "Use -r to start or -s to stop"
+	fi
+else
+	AutoClickToggle
+fi
