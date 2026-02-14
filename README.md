@@ -30,3 +30,5 @@ Polybar configuration for i3wm with custom modules and icons!
 
 ## Icon Theme
 * Breeze-Dark
+
+![Preview](preview.png)
