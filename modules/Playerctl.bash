@@ -51,7 +51,7 @@ else
     position=${ctl_range[0]}
     limit=${ctl_range[1]}
 
-    if [ "$status" ]; then
+    if [ "$status" ] && [ "$status" != "Stopped" ]; then
         music="$(playerctl metadata --format '{{ artist }} - {{ title }}' 2>/dev/null)"
 	extra_space=""
 
@@ -87,7 +87,7 @@ else
             shmm i3-PlayerCtlRange -w "${position}:${limit}"
             ;;
             "Paused")
-            printf "${GRAY}$ICON_PAUSE${YELLOW}  %%{A1:bash $0 --play:}$ICON_PLAY%%{A}  ${GRAY}$ICON_STOP${YELLOW}"
+            printf "${GRAY}$ICON_PAUSE${YELLOW}  %%{A1:bash $0 --play:}$ICON_PLAY%%{A}  ${YELLOW}%%{A1:bash $0 --stop:}$ICON_STOP%%{A}"
             ;;
         esac
         printf "  %%{A1:bash $0 --next:}$ICON_NEXT%%{A}${NO_F_COLOR}  "

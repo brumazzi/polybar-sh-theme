@@ -45,7 +45,7 @@ bindsym $mod+d exec dmenu_run
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
 # bindsym $mod+p exec --no-startup-id i3-dmenu-desktop
-bindsym $mod+p exec i3-dmenu-desktop
+bindsym $mod+p exec jgmenu_run
 
 # morc_menu run
 # bindsym $mod+m exec morc_menu
@@ -283,6 +283,7 @@ for_window [title="MEGAsync"] border none
 
 for_window [class="steam" title="Lista de amigos"] floating enable
 # for_window [title="- Discord"] move container to workspace $ws0
+# for_window [class="whatsapp-desktop"] move container to workspace $ws0
 
 # floating pop up automatically
 for_window [window_role="pop-up"] floating enable border none
@@ -291,10 +292,15 @@ for_window [window_role="task_dialog"] floating enable border none
 # move floating window to center
 for_window [class="^(?!MEGAsync).*$"] move position center
 
-client.focused #00b0ef #00b0ef #141414 #ff7066
-client.focused_inactive #141414 #141414 #00b0ef #472b2a
-client.unfocused #141414 #141414 #7d7d7d #141414
-client.urgent #ff7066 #ff7066 #141414 #ff7066
+client.focused #dbdbdb #dbdbdb #262626 #262626
+client.focused_inactive #262626 #262626 #dbdbdb #dbdbdb
+client.unfocused #555555 #555555 #dbdbdb #dbdbdb
+client.urgent #ff9838 #ff9838 #262626 #262626
+
+# client.focused #00b0ef #00b0ef #141414 #ff7066
+# client.focused_inactive #141414 #141414 #00b0ef #472b2a
+# client.unfocused #141414 #141414 #7d7d7d #141414
+# client.urgent #ff7066 #ff7066 #141414 #ff7066
 
 
 

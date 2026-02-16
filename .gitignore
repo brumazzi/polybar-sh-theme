@@ -1,2 +1,5 @@
 bg
 build
+cfg.ini
+*.bak
+*.ttf
