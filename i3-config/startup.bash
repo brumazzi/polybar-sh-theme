@@ -14,6 +14,19 @@ start_timidity () {
 	[[ "$(ps -C timidity -o pid=)" ]] || timidity -iA
 }
 
+function ntfs-unfix {
+	sleep 3
+	for disc in GAMES SSD-GAMES; do
+		slepp 1
+		sudo ntfsfix /dev/disk/by-label/$disc
+	done
+
+	sleep 1
+	sudo mount /dev/disk/by-label/GAMES /media/purple
+	sleep 1
+	sudo mount /dev/disk/by-label/SSD-GAMES /media/ssd-game
+}
+
 run-delay "sudo rc-service ntp-client start" 5 &
 
 for file in $HOME/.config/autostart/*.desktop; do
@@ -33,3 +46,5 @@ for var in Weather:256 BGDelay:6 BG:1024 CoinMode:4 CoinPrice:2048 kmap:64; do
 
 	shmm i3-$var_name -a $var_size
 done
+
+ntfs-unfix &
