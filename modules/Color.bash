@@ -8,6 +8,16 @@ export PURPLE="%%{F#ad39cb}"
 export ORANGE="%%{F#ff9838}"
 export GRAY="%%{F#555555}"
 
+export BG_BLUE="%%{B#4d8ddb}"
+export BG_GREEN="%%{B#42d6b9}"
+export BG_RED="%%{B#db4d4d}"
+export BG_YELLOW="%%{B#dbc14d}"
+export BG_DARK="%%{B#262626}"
+export BG_LIGHT="%%{B#dbdbdb}"
+export BG_PURPLE="%%{B#ad39cb}"
+export BG_ORANGE="%%{B#ff9838}"
+export BG_GRAY="%%{B#555555}"
+
 export GREEN_S="%{F#42d6b9}"
 export PURPLE_S="%{F#ad39cb}"
 
