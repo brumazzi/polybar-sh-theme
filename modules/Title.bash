@@ -13,11 +13,14 @@ function win_alias {
 	esac
 }
 
-CLASS_NAME="$(xdotool getactivewindow getwindowclassname)"
+CLASS_NAME="$(xdotool getactivewindow getwindowclassname 2> /dev/zero)"
 CLASS_NAME_LEN=${#CLASS_NAME}
 CLASS_NAME=${CLASS_NAME:0:27}
 
-if [ "$CLASS_NAME_LEN" -ge 27 ]; then
+if [ "$CLASS_NAME_LEN" -eq 0 ]; then
+	echo ""
+	exit 0
+elif [ "$CLASS_NAME_LEN" -ge 27 ]; then
 	CLASS_NAME="${CLASS_NAME}..."
 fi
 
