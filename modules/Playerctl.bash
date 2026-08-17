@@ -90,7 +90,7 @@ else
             printf "${GRAY}$ICON_PAUSE${YELLOW}  %%{A1:bash $0 --play:}$ICON_PLAY%%{A}  ${YELLOW}%%{A1:bash $0 --stop:}$ICON_STOP%%{A}"
             ;;
         esac
-        printf "  %%{A1:bash $0 --next:}$ICON_NEXT%%{A}${NO_F_COLOR}  "
+        printf "  %%{A1:bash $0 --next:}$ICON_NEXT%%{A}${NO_F_COLOR}"
 
     else
         shmm i3-PlayerCtlRange -w "0:20"
@@ -99,7 +99,7 @@ else
     fi
 fi
 
-printf "%%{A1:bash $0 --output:}%%{T1}("
-source ~/.config/polybar/modules/Audio-Card.bash
-printf ")%%{A}"
+#printf "%%{A1:bash $0 --output:}%%{T1}("
+#source ~/.config/polybar/modules/Audio-Card.bash
+#printf ")%%{A}"
 

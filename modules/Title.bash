@@ -24,6 +24,16 @@ elif [ "$CLASS_NAME_LEN" -ge 27 ]; then
 	CLASS_NAME="${CLASS_NAME}..."
 fi
 
+#MODE="$(i3-msg -t get_binding_state)"
+#MODE="${MODE:9:-2}"
+#END_MARK=""
+#if [ "$MODE" == "move" ] || [ "$MODE" == "resize" ] ; then
+#	MODE="<${MODE^^}>"
+#else
+#	MODE=""
+#fi
+
 printf "%%{T6}$BG_LIGHT$DARK  "
 win_alias ${CLASS_NAME/-/ }
-printf "  $BG_RED$LIGHT%%{A1:i3-msg kill &:}    %%{A}"
+printf "  ${BG_RED}${LIGHT}%%{A1:i3-msg kill &:}    %%{A}"
+

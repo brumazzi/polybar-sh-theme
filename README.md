@@ -20,6 +20,8 @@ Polybar configuration for i3wm with custom modules and icons!
 * xbacklight
 * fontforge
 * web3icons
+* rofi
+* xdialog
 
 ## Fonts
 * Roboto
