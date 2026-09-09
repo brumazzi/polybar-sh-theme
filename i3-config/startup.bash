@@ -30,6 +30,7 @@ function ntfs-unfix {
 run-delay "sudo rc-service ntp-client start" 5 &
 
 for file in $HOME/.config/autostart/*.desktop; do
+	echo $file
 	if [ -x $file ]; then
 		ExecCommand="$(cat $file | grep Exec | grep -v TryExec | awk -F= '{print $2}')"
 		

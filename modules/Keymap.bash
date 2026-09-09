@@ -53,8 +53,8 @@ if [ "$kmap" == "xkb:us:altgr-intl:eng" ]; then
 	kmap="US-Agr"
 elif [ "$kmap" == "xkb:us:alt-intl:eng" ]; then
 	kmap="US-Int"
-elif [ "$kmap" == "mozc-jp" ]; then
-	kmap="JP-"
+elif [ "$kmap" == "mozc-on" ]; then
+	kmap="JA-Kan"
 fi
 
 printf "$ICON: $BLUE$kmap"

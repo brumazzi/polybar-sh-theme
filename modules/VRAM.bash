@@ -2,6 +2,14 @@
 
 source ~/.config/polybar/modules/Color.bash
 
+ICON=""
+nvidia_smi=($(whereis nvidia-smi))
+
+if [ "${nvidia_smi[1]}" == "" ]; then
+	printf "$ICON: ${RED}NOT STARTED"
+	exit 0
+fi
+
 VRAM="$(nvidia-smi --query-gpu=memory.used,memory.total --format=csv,noheader,nounits | awk -F', ' '{print int(($1/$2)*10)}')"
 
 #COLORS=("#42d6b9" "#4bd3b3" "#7dc391" "#adb370" "#dda34f" "#ff9838" "#f98b3c" "#ef7741" "#e66447" "#db4d4d")
@@ -10,14 +18,16 @@ BASE_COLOR="#555555"
 
 index=0
 
-printf ": "
+printf "${ICON}: %%{T8}"
+ICON_BAR="\u56"
 
 while [ ${COLORS[$index]} ]; do
 	color=${COLORS[$index]}
-	if [ $index -lt $VRAM ]; then
-		printf "%%{F#$color}▐%%{F-}"
+	if [ $index -lt "$VRAM" ]; then
+		printf "%%{F#$color}$ICON_BAR%%{F-}"
 	else
-		printf "%%{F$BASE_COLOR}▐%%{F-}"
+		printf "%%{F$BASE_COLOR}$ICON_BAR%%{F-}"
 	fi
 	let index="$index + 1"
 done
+printf "%%{T-}"

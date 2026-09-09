@@ -35,5 +35,5 @@ fi
 
 printf "%%{T6}$BG_LIGHT$DARK  "
 win_alias ${CLASS_NAME/-/ }
-printf "  ${BG_RED}${LIGHT}%%{A1:i3-msg kill &:}    %%{A}"
+printf "  ${BG_RED}${LIGHT}%%{A1:i3-msg -s $(i3 --get-socketpath) kill &:}    %%{A}"
 

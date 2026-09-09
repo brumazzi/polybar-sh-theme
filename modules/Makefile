@@ -6,5 +6,5 @@ clear:
 	rm -rf build
 
 install:
-	cp build/shmm ~/.local/sbin/
 	cp build/polybar-widget ~/.local/sbin/
+	cp build/shmm ~/.local/sbin/
