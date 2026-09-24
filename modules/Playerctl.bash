@@ -60,8 +60,6 @@ else
 		music="$(echo -e "${music//\%/\\x}")"
 		
 	fi
-	music="" # remove this to add music name
-	SPACE="" # remove this to add default space
 	extra_space=""
 
 	let i=0
@@ -88,7 +86,7 @@ else
         done
         printf "${NO_B_COLOR}"
 
-        printf "${YELLOW}%%{A1:bash $0 --previous:}$ICON_PREVIEW%%{A}  "
+        printf "  ${YELLOW}%%{A1:bash $0 --previous:}$ICON_PREVIEW%%{A}  "
         case "$status" in
             "Playing")
             printf "%%{A1:bash $0 --pause:}$ICON_PAUSE%%{A}  ${GRAY}$ICON_PLAY${YELLOW}  %%{A1:bash $0 --stop:}$ICON_STOP%%{A}"
@@ -104,8 +102,7 @@ else
     else
         shmm i3-PlayerCtlRange -w "0:20"
         # message="  Audio not playing  "
-        printf "%%{T6}${GRAY}${ICON_PREVIEW}  ${ICON_PLAY}  ${ICON_PAUSE}  ${ICON_STOP}  ${ICON_NEXT}" "${message:0:$limit}"
-        #printf "%%{T6}%${#SPACE}.${#SPACE}s  ${GRAY}${ICON_PREVIEW}  ${ICON_PLAY}  ${ICON_PAUSE}  ${ICON_STOP}  ${ICON_NEXT}" "${message:0:$limit}"
+        printf "%%{T6}%${#SPACE}.${#SPACE}s  ${GRAY}${ICON_PREVIEW}  ${ICON_PLAY}  ${ICON_PAUSE}  ${ICON_STOP}  ${ICON_NEXT}" "${message:0:$limit}"
     fi
 fi
 

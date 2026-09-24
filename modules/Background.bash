@@ -10,7 +10,7 @@ fi
 
 [[ ! -e "$BG_PATH" ]] && BG_PATH="$BG_FOLDER/$BG_PATH"
 
-if [ -d $BG_PATH ]; then
+if [ -d "$BG_PATH" ]; then
 	IFS=':' read -a bg_info <<< $(shmm i3-BG -r)
 	dir=${bg_info[1]}
 	mapfile -t dir_files <<< $(ls -1 $dir)
@@ -31,13 +31,12 @@ if [ -d $BG_PATH ]; then
 	shmm i3-BG -w "${i_index}:${dir}"
 	shmm i3-BGDelay -w "$CHANGE_DELAY"
 	feh --bg-scale "$dir/${next_img}"
-
-elif [ -f $BG_PATH ]; then
+elif [ -f "$BG_PATH" ]; then
 	IFS=':' read -a bg_info <<< $(shmm i3-BG -r)
 	img="${bg_info[1]}"
 	if [ "$img" != "$BG_PATH" ]; then
 		shmm i3-BG -w "0:$BG_PATH"
-		feh --bg-scale $BG_PATH
+		feh --bg-scale "$BG_PATH"
 	fi
 else
 	exit 0

@@ -3,6 +3,9 @@
 source $HOME/.config/polybar/modules/Functions.bash
 source $HOME/.config/polybar/modules/Color.bash
 
+echo ''
+exit 0
+
 check-command cava
 if [ "$?" -eq 1 ]; then
 	echo ""
