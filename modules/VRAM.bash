@@ -12,6 +12,11 @@ fi
 
 VRAM="$(nvidia-smi --query-gpu=memory.used,memory.total --format=csv,noheader,nounits | awk -F', ' '{print int(($1/$2)*10)}')"
 
+if [ "$?" -ne 0 ]; then
+	printf "$ICON: ${RED}NOT SUPPORT"
+	exit 1
+fi
+
 #COLORS=("#42d6b9" "#4bd3b3" "#7dc391" "#adb370" "#dda34f" "#ff9838" "#f98b3c" "#ef7741" "#e66447" "#db4d4d")
 COLORS=(428cd6 4267d6 4242d6 8042d6 a542d6 ca42d6 d642bd d64298 d64273 d64242)
 BASE_COLOR="#555555"
